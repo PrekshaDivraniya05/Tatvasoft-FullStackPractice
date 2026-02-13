@@ -1,0 +1,59 @@
+<div class="container mt-4">
+
+    <h2 class="mb-3">Customers</h2>
+
+    <!-- Add Customer -->
+    <div class="card p-3 mb-4">
+        <h5>Add Customer</h5>
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- template reference variable -->
+                <input #nameInput class="form-control" placeholder="Enter Name">
+            </div>
+
+            <div class="col-md-6">
+                <button class="btn btn-primary" (click)="add(nameInput.value); nameInput.value=''">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Table -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th width="200">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let c of customers">
+                <td>{{c.customerId}}</td>
+                <td>
+                    <!-- Inline edit input -->
+                    <input #editName class="form-control" [value]="c.name">
+                </td>
+                <td>{{c.totalAmount}}</td>
+
+                <td>
+                    <button class="btn btn-success btn-sm me-2" (click)="update(c.customerId, editName.value)">
+                        Update
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" (click)="delete(c.customerId)">
+                        Delete
+                    </button>
+                    <button class="btn btn-secondary btn-sm" (click)="orders(c.customerId)">
+                        Orders
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
